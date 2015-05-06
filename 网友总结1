@@ -1,0 +1,3741 @@
+马上就要G on site了，
+求祝福。
+
+
+下面是从本版收集到的Google的试题，便于大家查询。
+申明：有的附带有解释说明的，也来自于本版或者网络，大家自己看， 不保证真确
+
+
+
+
+http://www.mitbbs.com/article_t1/JobHunting/31847453_0_1.html
+
+
+本人ECE fresh PhD，背景是电路/EDA，跟G业务基本没什么关系
+同学内部推荐的，很简单的一次电面就给了onsite
+题都不难，但是自己没把握好机会，出了一些小bug。
+总的感觉，出错就是硬伤，宁可从最简单的算法写起，也不能出错。
+
+
+电面：
+1，Skip list， http://en.wikipedia.org/wiki/Skip_list
+写code实现struct skip_list * find(struct skip_list *head, int value)
+
+
+2，sorted array with repeated elements
+for given element, find out its range. 
+e.g. A A B B B B B C C D D E F G, given B, the output should be [2, 6] 
+binary search的变种
+
+
+3，number of unique url accesses in huge log files
+hashtable + bit vector
+讨论hash的实现，bit vector如何快速统计有多少个entry
+
+
+onsite：
+
+
+4，老题，爬楼梯一次可以走一级或者两级，爬N级有多少种走法
+
+
+5，文件读写
+有个封装好的函数 int block_reader(char *buf)
+内部有个静态文件指针，只能向文件末尾移动，不能rewind
+每次只能读取4K的block到buf里，返回读取的字节数（除非到文件尾，否则总是4K）
+要求实现 int anysize_reader(char *buf, int size)
+从文件的当前位置读取任意大小的数据存入buf，并返回实际读到的数据字节数
+白板写code
+
+
+问题的关键在于anysize_reader会被多次调用，每次都可能不是4K对齐
+所以需要自己维护一个4K的buffer
+
+
+6，系统设计
+讨论gmail的user authentication，描述详细的流程，性能瓶颈
+如何做load balancing
+
+
+7，写code实现int sqrt(int n)
+用binary search，需要考虑比较多的细节
+
+
+8，老题，实现分布的LRU cache，要求存取时间O(1)
+
+
+9，Unix file path化简，写code
+例如 /a/./b/../../c/ ，化简为 /c/
+用stack或者d-queue，有些细节需要考虑，例如 /..//.. 还是输出 /
+
+
+10，write code to find all the possible combinations of chars in a given 
+string
+
+
+11，a set of intervals, how to tell if a given value is in any of the 
+intervals
+讨论了overlapping的情况，interval tree，etc
+
+
+还有一些类似难度的题，记不大清楚了。总之不是很难
+俺基本功不扎实，倒在了胜利的前夕
+希望后来的xdjm们都能传捷报～～～～
+http://www.qiuzhihaoyue.com/article_t1/JobHunting/31598671_3160
+周二进行了google电面，今天刚刚收到了recruiter的email，说
+
+
+电面还不错，正在安排onsite。
+
+
+在版上得意于广大同志们的热心帮助，非常感谢！
+
+
+分享一下我的电面经过:
+
+
+我的电面开始的时候interviewer就问我的research背景和相关
+
+
+一些课题，我在phd期间发表过一些不错的paper，interviewer对于
+
+
+最好的一篇看起来很有兴趣，让我解释一下motivation，method，
+
+
+performance，可能存在的性能问题，等等，这个过程大约15mins，因为自己本身比较熟
+悉，所以回答的比较主动流利，感觉他也很满意。
+
+
+然后是算法和coding问题，我觉得我比较幸运，他问的2个算法问题，都是我之前看过的
+，出自"Hacking_a_google_interview"那几个pdf里面，其中一个是"Axis-Aligned Rec
+tangle"问题，我觉得是因为我是来自computer graphics的方向，interviewer特地挑了
+这个和graphics背景相关的问题问我，因为这个和Axis-Aligned BoundingBox其实是差
+不多的。还有一个问题就是median value from an int array,我说了那个O(N)的divid
+e-and-conquer的解之后，他又问我，如果他要经常地取从index=0到index=k的元素之间
+(k是变化的)median值，提示可以预计算一些数据，问如何处理，我想了一会没有答上来
+。他又问如果是一个binary search tree如何寻找median值，我当时因为紧张也没想出
+来，（面试之后，平静了一下就想明白了，其实只需要做inorder traversal找到N/2元
+素就可以）
+
+
+coding题目比较简单就是非迭代的binary tree preorder traversal，我之前有练过这
+个code，所以应该还行。
+
+
+之后他说我可以问他1-2个问题，我问了他觉得如果是phd进google，research ability
+对于product的贡献一般体现在什么地方？他很nice的回答了我。
+
+
+然后我问了他是那个group的，然后问了他的email。
+
+
+结束总共大约40分钟。
+
+
+我第二天清醒之后，给interviewer发了一封thanks letter，基本都是自己的体会和想
+法，应该比较真诚。
+
+
+整体的过程就差不多这样，我自己当时其实感觉不好，觉得自己当时算法有一些没有回
+答出来，以为就挂了，今天突然收到说interview went well正在安排onsite，觉得有些
+幸运，我觉得可能google对于我的research background还是很有兴趣的，能够onsite我
+觉得可能有这个原因，至少我之前准备了一些dp，在电面的时候还是没用上。
+
+
+最好祝福所有后来的电面同志们都好运！
+
+
+并向大家请教一下onsite的建议，是不是会很多白板coding？我可能需要大量地联系算
+法coding了，还有就是关于软件设计方面？说实话，自己平时写自己的程序框架做rese
+arch coding，但是设计肯定是不专业的，有些担心这个方面，大家如果有什么好的建议
+，请不吝赐教，非常感谢！
+http://www.mitbbs.com/article_t/JobHunting/31610567.html
+第一轮电面通过了，之前recruiter说安排onsite
+但因为我在欧洲，recruiter希望我能飞到US来onsite，
+也许为了保险起见，要求进行第二轮电面，今天晚上
+刚刚电面结束了。准备面试过程中一直得到板上朋友
+的帮助，非常感谢！把问的问题和大家分享一下:
+
+
+上来第一个问题是问我为什么对于google有兴趣?
+我自己是computer graphics的PHD背景，我按照
+我自己的情况和他说了一下发现google最近推出了
+webGL标准的O3D SDK， 还有就是最新的3D google
+map，其中我发现3D map在terrain方面感觉绘制还
+需要提高，balabala。。。 这个过程大约10分钟
+左右。
+
+
+第二个问题是关于描述一个自己coding以来最难的
+debug case。 我结合自己的背景，讲了一个自己
+当时在GPU shader里面debug linear quadtree
+traversal的问题。其实不是很难，不过我自己觉得是一个
+有意思的问题。大约10分钟。
+
+
+第三个问题是给一个simple code:
+
+
+char* F()
+{
+   char S[100];
+   sprintf(S,"Hello World!\n");
+   return (S+6);
+}
+
+
+void main()
+{
+  printf("%s\n", F);
+
+
+}
+
+
+分析这个程序的结果。 我指出这个S[100]是local
+变量 in stack，这个程序有问题， 讲了一下
+应该如何修改的几种可能性。
+
+
+最后一个问题是问，如果设计一个web crawler，
+抓一个页面的url只好，分析这个页面里面所有的
+link url，记录不重复的new url，问需要什么样
+的数据结构。
+
+
+我回答是url不重复，有unique性，可以考虑hashmap。
+另外从一个url到下一层url，设计一个tree，每个treenode
+里面包含一个vector动态数组来记录新的子节点的pointer。
+
+
+然后进一步问，如果有1000台电脑运行web crawler，应该
+如何设计程序运行。
+
+
+最后我问了他一个问题。想问一下email写thanks letter，
+interviewer说不太愿意leak私人信息，口头表示感谢。
+
+
+整体的过程大约就是这样的，
+
+
+我自己的感觉其实回答的一般，特别是最后一个设计题，
+我自己没有这个方面的经验，也从来没做过，所以只能
+是按照自己的理解和临场发挥去表达，肯定不是最优的。
+应该3天左右就有消息吧，希望自己好运，
+最后祝福大家jobseek都好运！
+
+
+Google phone screen
+http://www.mitbbs.com/article_t/JobHunting/31533727.html
+刚刚面的电面，心里没底啊。
+1. Given a sorted integer array and a specific integer, find the 
+first position of that integer. Array contains lots of 
+duplicate.
+我说用binary search， 找到之后然后左移找到第一个于它前一个不一样的，就是
+first position。然后他说如果有很多很多的duplicate的话，有没有更快的方
+法。然后我就想先binary search找到了middle之后，再在left和middle之间进行
+多一次binary search，用一些边界条件什么的判断。 这样算不算改进啊，我觉得应
+该是会快点啊。
+
+
+2. 有很多doc，里面有很多电话，怎么查找电话。
+我说只是一次用的，hash一下找，如果以后还得用的话，就sort他们，然后按area 
+code做一个B tree什么的。
+
+
+3. 在一个resume里面找电话。
+我说如果是US的话找一个连续是10个digit的，或者中间有（）或-的，然后查头三个
+digits是不是valid的area code。 这样对吗？
+
+
+4. 电话key pad上2-9每个代表了3个char，给你一个字典，还有一串数，找出
+valid的word。
+一开始他给我的是3个digit的，然后我就说找出这27个combinations,然后去字典里
+找是不是valid的。他问那这个有什么问题，想了想说是不是如果digit太多的话，
+combination算很久。他也没对还是不对。就说如果给你一个很长的digit，怎么找。
+我就说在字典里找出长度为这么长的所有单词。然后从第一个digit开始，选出第一个
+字母是这个个digit表示的单词。全选完之后再接着第二个数字那样筛选。最后得出来
+的就是valid的。
+
+
+心里没底，也没想到更好的方法。面得那个人也好像没什么hint，不知道是对还是错。
+sigh~~ 牛人们，有什么更好的方法吗？
+
+
+Google phone screen
+http://www.mitbbs.com/article_t/JobHunting/31569139.html
+刚面完，感觉一般，估计挂了....
+寒暄，文件里上的project,接下来算法：
+find majority element in an array. 我说用hash table，但是空间效率
+低，我自己说了个constant space的idea, 写code。 写完问我怎么extend 
+to最一般的情况, 我说了自己的idea, 然后说什么时间不够了，就不用写代码了，
+他理解啥的.....
+http://www.mitbbs.com/article_t/JobHunting/31831221.html
+Google two phone screen
+Phone 1:
+
+
+<C++>: 
+What is “static” variable?
+How can many instance share a resource
+What is deadlock, how to prevent it?
+
+
+Compare whether two strings s1, s2 are equal, inside a huge set of string. 
+Normal way is to compare each character one by one, but it is O( n ) time 
+complexity. What type of short circuit can u think?
+One short circuit is to use the length, since s1.len <> s2. len , then 
+return false.  Anything else you can think of in the similar way?
+
+
+My answers:
+Hashtable?  No, need extra space
+Binary search? No, worst case is O(n)
+1)    # of unique chars
+2)    Bit vector for each
+I did not know KMP and Robin Karp at that time, i guess it is the desirable 
+solution for the interview   
+
+
+Given a perfect random generator Random(n) which can generate number between
+[0,1], write a program to generate a random pair of (x, y) within a circle 
+of radius 1, and with (0,0) center with uniform distribution inside the 
+circle.  What is the expect probability of values fall into the circle?
+
+
+-----------------------------------------------------------
+Phone 2: 
+1) implement the merge of two int arrays A and B, using the similar way as 
+merge-sort
+
+
+Further question:
+if A's size is over the max possible value of the int array, how do u handle
+that? suppose you have enough memory
+(do some math here, e.g. 2^ 30, 2^ 40.... headache)
+
+
+2) given a dictionary of all words, you can use any storage way to store the
+words. Suppose the user enters the phone number "123-456-7890"
+how can u find the dictionary to find all possible words?
+
+
+Both of them need time complexity analysis.
+////////////////////
+http://www.mitbbs.com/article_t/JobHunting/31585423.html
+SDE位置，两轮电面，算法、coding各一轮。
+
+
+算法两道题，一个anagram查找，一个在字符串中查找包含给定字符的最短子串，都是
+版上见过的。
+
+
+coding也是两道题，一个二分查找，一个二叉树遍历，也都是最基本的。coding做的不
+好，不熟练加上紧张，犯了些个低级错误，面完后慢慢检查才发现。好在没有因此fail
+掉。下次电面coding的时候，应该开个编译器。
+
+
+想请教onsite的准备: google的onsite，design、系统的问题比重有多大？版上看到的
+google问题好像全是算法。我对design pattern只能说知道，不清楚该花多大工夫来看
+，看到什么程度？毕竟算法加coding是大头，还要花大量时间。
+
+
+onsite回来后再汇报
+http://www.mitbbs.com/article_t1/JobHunting/31613433_0_1.html
+上周一onsite，今天接到recruiter的电话。onsite之后自己感觉很不理想，估计成不
+了。所以recuiter昨天来信说今天出结果，会给我打电话，我准备的问题就是多长时间
+后可以再申请。倒不太难过，只是觉得太可惜，浪费一次机会。这是我第一个onsite，
+如果之前有其它公司练手积累经验的话，机会应该能大一些。
+
+
+具体题目就不说了，考察的内容都比较基础。如果常见的算法（查找，树，图）都能熟
+练运用，运用时能正确coding，应该能满足要求了。感觉平时版上看的面经的题比实际
+偏难。这样容易造成一个错觉，在面试时碰到不熟悉的题时，倾向往难的方向去思考，
+很容易卡住。还有一点就是平时练习时做题一定要做完整的解答、coding，不然临场很
+难不出错。
+
+
+下面还有一个Amazon的电面，求祝福
+http://www.mitbbs.com/article_t/JobHunting/31563237.html
+
+
+from career cup. 
+
+
+You are given a String number containing the digits of a
+phone number (the number of digits, n, can be any positive integer) . To 
+help you memorize
+the number, you want to divide it into groups of contiguous digits. Each 
+group must contain
+exactly 2 or 3 digits. There are three kinds of groups:
+• Excellent: A group that contains only the same digits. For example, 
+000 or 77.
+• Good: A group of 3 digits, 2 of which are the same. For example, 030
+, 229 or 166.
+• Usual: A group in which all the digits are distinct. For example, 
+123 or 90.
+The quality of a group assignment is defined as
+2 × (number of excellent groups) + (number of good groups)
+Divide the number into groups such that the quality is maximized. Design an 
+efficient
+algorithm to return the solution that maximizes the quality.
+http://www.mitbbs.com/article_t/JobHunting/31690961.html
+1.开放式问题,有些网站每天只允许有限次访问,怎么抓取网页使得索引尽量全面和新鲜
+？？
+2.在C++文件中只declare class A, 但不以任何方式define class A, 是做什么用
+3. Estimate the time cost of transfering 1M of data from one memory stick to
+another.
+        - when the data in memory is sequentially stored;
+        - when the
+data in memory is stored in blocks;
+        - does the bus width matter 
+here?
+4.How to transform a unbalanced tree into balanced tree?
+第2个题我想的是保留A的名字，以后再定义
+第四个题我想的是先算每个节点的blance factor然后再调整，具体怎么调整就不知道
+了。
+第四个题还想到一个办法是转成双链表，然后再转balanced tree，保证了inplace
+对于第一题，有很多情况没有clear。
+
+
+“只允许有限次访问”，是限制单纯的访问次数，还是访问下载的流量？
+是限制IP吗？还是根据hostname限制？
+
+
+若是根据IP限制，那么Google的crawler有好几个，IP都不一样。可以每个crawler
+分别去爬去文档。
+
+
+1、设定一个window时间，在该window时间范围内不再访问该网站。
+
+
+比如，初始 window = 5 min，那么 crawler 在5分钟之类不会再次访问该网站。可以
+用数据结构 hashtable，保存 { URLSignature -> Timestamp } 的映射。
+
+
+每次遇到一个URL，查询上一次访问的 Timestamp，并判断  CurrentTime > 
+Timestamp + Window。
+
+
+若是通过，就检查网页是否更新。
+
+
+若是不通过，或者检查网页发现没有更新，window *= 2。
+
+
+这有点类似于 TCP 的 slow start，用来限制过快的访问同一个网页。若是发现网页有更
+新，把 window 设置回初始值。window 最大只能增长到一个特定值，比如，1天。
+
+
+2、每次访问先下载 HTTP Ｈeader。
+
+
+这个时候并不下载整个网页内容，节省流量。HTTP Header 里面有一个 field，叫做 
+LastModified，是网站提供的网页最后修改时间。若是之前爬过该网页，比较上一次的 
+LastModified 和新的 LastModified值。若是无变化，那么说明网页没有修改，返回。
+
+
+但是遗憾的是，这个 LastModified 不是 Mandatory field，有的网站可能不提供。
+
+
+HTTP Header 里面还有一个 field，叫做 Length，是网站提供的网页大小。这个是一个
+Mandatory field。若是之前爬过该网页，比较上一次的 Length 和新的 Length 值。若
+是有变化，证明网页的确有更新，返回。
+
+
+3、下载网页，检查网页内容。
+
+
+简单点儿，用md5 hash值。保存每一个网页的hash值，用映射 
+{ URL_Signature -> Content_MD5_Hash }
+
+
+--------
+
+
+大概想到的就这么多。
+
+
+最后一点，判读 URL 是否重复，不能简单的比较 String，所以上面我说的都是用 URL
+Signature。
+
+
+至少，同一个网页起码可以用不同的 URL 来表示，比如前 www 可以省略，hostname
+可以是 IP，若是 index page 可以没有 filename，同一个网页的不同位置可能有不同
+的 anchor。
+
+
+比如，如下的例子可能都指向同一个URL：
+
+
+http://www.mitbbs.com/bbsdoc/JobHunting.html
+http://mitbbs.com/bbsdoc/JobHunting.html
+http://mitbbs.com/bbsdoc/
+http://mitbbs.com/bbsdoc
+http://mitbbs.com/bbsdoc/JobHunting.html#top
+第三题其实是考察面试者对存储设备的实现是否了解。
+
+
+这里的 memory stick 应该是优盘，速度比较慢的那种。
+
+
+一般的存储设备，若是数据是 sequential stored，那么读取速度就会很快。不然，就
+需要 random seek，速度就很慢了。
+
+
+可以想象一个存储设备的实现是 Linked List，若是 sequential stored，那么最多读
+取 O(n) 次，这里 n 就是文件的大小。若是有很多碎片，那么最坏的情况就是 O(N)，
+这里 N 是整个设备的大小！
+
+
+当然，存储设备也提供随机读取，虽然比顺序读取慢很多（相差1～2个数量级），但
+是也比顺序扫描完整个设备要快很多。
+
+
+用 n 来表示文件的大小，s 来表示顺序读取速度，用 k 来表示随机读取速度。一般
+的，s 的值介于 10k~100k 之间。
+
+
+若是文件没有碎片，那么读取的消耗是 C1 = 1 / k + n / s
+若是文件有 x 个碎片，那么读取的消耗就是 C2 = (1 + x) * (1 / k) + (n / x) / s。
+
+
+设 s = 10k，x = n / 2。那么，
+
+
+C1 = 1 / k + n / 10k = (10 + n) / 10k
+C2 = (1 + n/2) * (1 / k) + 2 / 10k = (12 + 5n) / 10k
+
+
+也即，C2 = 5 * C1。时间相差很大了，联想到  Google 一般要处理上 G 的文件。
+
+
+至于 bus width，在这里没有关系。因为 bus width 的速度足够快，快到足于随机读取
+内存和CPU Cache。所以，读取存储设备来说是小 case。
+
+
+----
+
+
+3. Estimate the time cost of transfering 1M of data from one memory stick to
+another.
+        - when the data in memory is sequentially stored;
+        - when the
+data in memory is stored in blocks;
+        - does the bus width matter 
+here?
+
+
+http://www.mitbbs.com/article_t/JobHunting/31694457.html
+
+
+Given an array A, output another array B such that B[k]=product of all 
+elements in A but A[k]. You are not allowed to use division。
+
+
+显然interviewer是想考察一点什么技巧，一个直接的二重循环当然不是google想要的
+答案。但是苦苦思索，没有头绪。请大侠赐教！
+
+
+谢谢！
+用这个公式
+B[k]=Product(1,k-1) * Product(k+1, n)
+Product(i,j) = A*A[i+1]*...*A[j]
+
+
+
+So Product(1,j)=Product(1,j-1)*A[j]; 
+
+Prodcut(j,n)=Product(j+1,n)*A[j]
+
+
+
+O(n)的时间和空间复杂度。
+
+http://www.mitbbs.com/article_t/JobHunting/31681551.html
+
+
+
+来以为要废掉的电面，居然接到电话，让去onsite。惊喜之余，上来发帖，回报社会。
+
+
+
+本人背景：烂校 CS PhD,国内有一点点工作经验。年底毕业。方向很偏僻。
+
+
+
+经验教训：
+
+（1）Google看重的就是解决问题的能力和思考过程。结果不是最重要的，最重要的让
+
+面试官知道你的思考过程。并不是一开始给一个最快的算法是最好，详见我的电面第一
+
+题。这一点版上有点误导。
+
+（2）位操作是必考的，一定要准备
+
+（3）常用算法，如merge sort, quick sort, binary search一定要熟悉。
+
+（4）犯一点错误不要紧，如果只是面试官说“还有bug”，自己发现所有问题，应该是
+
+可以的。如果面试官直接指出问题所在，就不好了。
+
+（5）讲话小心不要被抓住辫子。Google的人都很聪明。
+
+（6）电面时有一个好的麦克风很重要，因为要在键盘上写程序。我用的手机自带的麦
+
+克风，有时候听不太清楚。
+
+
+
+电面经过：
+
+
+
+一开始面试官就没有废话，上来就写程序，用GoogleDoc，一共两题
+
+
+
+第一题： Reverse一个字节的所有二进制位，例如01110001->10001110
+
+这是一个经典题目。之前准备过，直接写那个最优最经典的
+
+
+
+void reverse_fast(….)
+
+x = (((x & 0xf0) >> 4) | ((x & 0x0f) << 4)); //头四位和后四位互换
+
+x = (((x & 11001100b) >> 2) | ((x & 00110011b) << 2)); //01位和23位互换，45
+
+位和67位互换
+
+x = (((x & 10101010b) >> 1) | ((x & 01010101b) << 1));//0和1位互换，2和3位互
+
+换，4和5位互换，6和7位互换
+
+(注：写11001100b是方便大家理解代码，语法是不允许的。)
+
+
+
+第二行刚写到一半，挑战开始了
+
+
+
+官：请写一个普通的算法，然后再优化
+
+我：（完蛋了，被看出来是背下来的答案,怎么办?）
+
+于是我开始另一个函数reverse_slow.用for循环写，循环四次，每次用位操作交换两位
+
+。中间犯了好几次错误，都是搞反了“与”和“或”，主要是因为紧张。面试官提醒了
+
+好几次还有错误，幸好都是我自己挑出的错误。其中我用了一个函数pow(2, i).
+
+官：pow函数返回的是 double
+
+我：我可以自己定义这个函数，返回整数
+
+官：请优化你的reverse_slow
+
+我：（愣了一下，来了一个愚蠢的回答）spell out the loop
+
+官：（显然不满意），那还有其他方式吗？
+
+我：让我想想，（停了一下），我可以把pow函数的结果写在一个常数数组里
+
+(注：这里优化的太快了，后来回忆，面试官可能期待我用位移实现pow函数，这个我要
+
+自抽嘴巴。)
+
+官：继续优化
+
+我：让我想想，（停了一下），请给一点Hint
+
+官：（乌拉乌拉说了一大堆，其实我没听懂）
+
+我：（灵机一动）输入一共256个，我把结果放在一个长度为256的常数数组里，这是最
+
+快的
+
+官：好。如果不用这个常数数组，比较你的reverse_slow和reverse_fast
+
+我：（在草纸上算了半天）reverse_slow要x次位操作，reverse_fast要y次位操作
+
+（注：我应该抽自己第二个嘴巴。这个答案显然毫无意义）
+
+官：我不是让你算多少次位操作。从time cost上比较。如果是16位或者32位整数呢
+
+我：（愣了一下）reverse_slow是O(n)，reverse_fast是O(logn).
+
+
+
+第二题：如何merge两个已经排序的数组
+
+
+
+这个我面试前一天还默写过。又是在GoogleDoc上写，可以拷贝粘贴。很快写完。不过
+
+还是有一些 typo。不过应该不要紧，是拷贝粘贴中发生的一些错误，经提醒，改正。
+
+（注：不要把拷贝粘贴理解歪了！！！我不是从网上复制代码，是把一个for循环复制
+
+到另外一个for循环。大家看一下 merge sort的代码就明白了.面试官可以实时看见你
+
+的typing!!!）
+
+
+
+官：怎么测试
+
+我：（说了好多，主要意思是边界情况，一般情况，空数组都要测试）
+
+官：（打断我的话，可能是我有一些意思表达得不清楚）那你说一说这个函数的输入和
+
+输出应满足的性质（Property）。
+
+我：输入是两个排序的数组，输出是两个输入数组的并(union)，并且是排好序的
+
+（注：应该抽自己第三个嘴巴，union是一个小辫子）
+
+官：你没有考虑重复出现的数。如果是union，重复出现的数应该被删掉
+
+我：对对对。输出应该包括所有的输入，重复的数应该保留。
+
+（注：这句话没有意义，错误已经犯了）
+
+http://www.mitbbs.com/article_t/JobHunting/31598671.html
+
+
+
+周二进行了google电面，今天刚刚收到了recruiter的email，说
+
+
+
+电面还不错，正在安排onsite。
+
+
+
+在版上得意于广大同志们的热心帮助，非常感谢！
+
+
+
+分享一下我的电面经过:
+
+
+
+我的电面开始的时候interviewer就问我的research背景和相关
+
+
+
+一些课题，我在phd期间发表过一些不错的paper，interviewer对于
+
+
+
+最好的一篇看起来很有兴趣，让我解释一下motivation，method，
+
+
+
+performance，可能存在的性能问题，等等，这个过程大约15mins，因为自己本身比较熟
+
+悉，所以回答的比较主动流利，感觉他也很满意。
+
+
+
+然后是算法和coding问题，我觉得我比较幸运，他问的2个算法问题，都是我之前看过的
+
+，出自"Hacking_a_google_interview"那几个pdf里面，其中一个是"Axis-Aligned Rec
+
+tangle"问题，我觉得是因为我是来自computer graphics的方向，interviewer特地挑了
+
+这个和graphics背景相关的问题问我，因为这个和Axis-Aligned BoundingBox其实是差
+
+不多的。还有一个问题就是median value from an int array,我说了那个O(N)的divid
+
+e-and-conquer的解之后，他又问我，如果他要经常地取从index=0到index=k的元素之间
+
+(k是变化的)median值，提示可以预计算一些数据，问如何处理，我想了一会没有答上来
+
+。他又问如果是一个binary search tree如何寻找median值，我当时因为紧张也没想出
+
+来，（面试之后，平静了一下就想明白了，其实只需要做inorder traversal找到N/2元
+
+素就可以）
+
+
+
+coding题目比较简单就是非迭代的binary tree preorder traversal，我之前有练过这
+
+个code，所以应该还行。
+
+
+
+之后他说我可以问他1-2个问题，我问了他觉得如果是phd进google，research ability
+
+对于product的贡献一般体现在什么地方？他很nice的回答了我。
+
+
+
+然后我问了他是那个group的，然后问了他的email。
+
+
+
+结束总共大约40分钟。
+
+
+
+我第二天清醒之后，给interviewer发了一封thanks letter，基本都是自己的体会和想
+
+法，应该比较真诚。
+
+
+
+整体的过程就差不多这样，我自己当时其实感觉不好，觉得自己当时算法有一些没有回
+
+答出来，以为就挂了，今天突然收到说interview went well正在安排onsite，觉得有些
+
+幸运，我觉得可能google对于我的research background还是很有兴趣的，能够onsite我
+
+觉得可能有这个原因，至少我之前准备了一些dp，在电面的时候还是没用上。
+
+
+
+最好祝福所有后来的电面同志们都好运！
+
+
+
+并向大家请教一下onsite的建议，是不是会很多白板coding？我可能需要大量地联系算
+
+法coding了，还有就是关于软件设计方面？说实话，自己平时写自己的程序框架做rese
+
+arch coding，但是设计肯定是不专业的，有些担心这个方面，大家如果有什么好的建议
+
+，请不吝赐教，非常感谢！
+
+http://www.mitbbs.com/article_t/JobHunting/31703425.html
+
+
+
+有一个排好序的词典，大小未知，唯一的接口就是查询某个index对应的单词，如果该
+
+index超出词典大小则返回null
+
+
+
+如何最快的判断一个给定的单词是否在词典中。
+
+http://www.mitbbs.com/article_t1/JobHunting/31569423_0_1.html
+
+
+
+n*n 矩阵, 元素包括0 和1
+
+求size(面积)最大的全1子矩阵.
+
+想不出来,求教大家.
+
+这题最优解可以O(n^2)。。。
+
+
+
+要在面试时想出来的确有点难度。
+
+
+
+以下两个链接有详细解法，欢迎大家踊跃讨论
+
+
+
+http://www.drdobbs.com/184410529
+
+
+
+http://www.seas.gwu.edu/~simhaweb/cs151/lectures/module6/module
+
+•    Use bottom up approach: 
+
+
+
+o    Start at topleft corner (i, j). 
+
+o    Grow region rightwards and downwards as much as possible. 
+
+•    A key observation: 
+
+
+
+o    Consider potential bottom-right corners. 
+
+o    These form an ascending sequence right to left. 
+
+=> never need look "deeper" than in previous column. 
+
+•    Code: 
+
+•    
+
+•      // ... 
+
+•    
+
+•      // Start with top left at i,j and find largest rectangle of 1's
+
+. 
+
+•      // Use java.awt.Point to store and return two integers. 
+
+•    
+
+•      Point growRegion (int i, int j)
+
+•      {
+
+•        // 1. best_a and best_b will record the best bottom-right 
+
+corner so far. 
+
+•        int best_a = i,  best_b = j;
+
+•    
+
+•        // 2. a and b will range over possible locations for the 
+
+bottom-right corner. 
+
+•        int a = i,  b = j;
+
+•    
+
+•        // 3. There is no need to search below rowMax, which is 
+
+updated 
+
+•        //    as we proceed. 
+
+•        int rowMax = M-1;
+
+•    
+
+•    
+
+•        // 4. Scan left to right along row i using index b as long as
+
+there are 1's. 
+
+•    
+
+•        while ( (b <= N-1) && (A) != 0) {
+
+•    
+
+•          // 4.1 Start at the highest possible row, row i. 
+
+•          a = i;
+
+•    
+
+•          // 4.2 Descend into current column (column b) as far down 
+
+as possible. 
+
+•          while ( (a <= rowMax) && (A[a] == 1) )
+
+•            a = a + 1;
+
+•    
+
+•          // 4.3 Back up to the last "1". 
+
+•          a = a - 1;
+
+•          
+
+•          // 4.4 Update rowMax if we stopped at an earlier row. 
+
+•          if (a < rowMax)
+
+•            rowMax = a;
+
+•    
+
+•          // 4.5 Check to see if found a larger rectangle. 
+
+•          int area = computeArea (i, j, a, b);
+
+•    
+
+•          // 4.6 If the rectangle is larger, update. 
+
+•          if (area > maxArea) {
+
+•            best_a = a;
+
+•            best_b = b;
+
+•            maxArea = area;
+
+•            topLeftX = i;  topLeftY = j;
+
+•            botRightX = best_a;  botRightY = best_b;
+
+•          }
+
+•    
+
+•          // 4.7 Continue with next column. 
+
+•          b++;
+
+•    
+
+•        } // endwhile 
+
+•        
+
+•        // 5. Return best bottom-right corner. 
+
+•        return new Point (best_a, best_b);
+
+•      }
+
+•      
+
+•    
+
+•      public int findMaxRectangleArea (int[][] A)
+
+•      {
+
+•        // ... 
+
+•    
+
+•        // 1. Check if array is all zeroes. 
+
+•    
+
+•        // ... 
+
+•    
+
+•        // 2. If all zeroes, no further checks are required. 
+
+•    
+
+•        // 3. We know there's at least one 1 x 1 rectangle (of area 1
+
+). 
+
+•        maxArea = 1;
+
+•    
+
+•        // 4. Outer double-for-loop to consider all possible 
+
+positions 
+
+•        //    for topleft corner. 
+
+•    
+
+•        for (int i=0; i < M-1; i++) {
+
+•          for (int j=0; j < N-1; j++) {
+
+•    
+
+•            // 4.1 Find the largest possible rectangle with topleft 
+
+at i,j. 
+
+•            Point p = growRegion (i, j);
+
+•    
+
+•            // NOTE: growRegion itself updates the current largest 
+
+rectangle, 
+
+•            //       so there's no need to do it here. 
+
+•            
+
+•          } 
+
+•          
+
+•        } // end-outermost-for 
+
+•    
+
+•    
+
+•        // 5. Return value. 
+
+•        return maxArea;
+
+•      }
+
+•    
+
+•      // ... 
+
+•    
+
+  
+
+•    Have we reduced the complexity? 
+
+o    Potential topleft corners: O(mn). 
+
+o    Each execution of growRegion is O(mn), worst-case. 
+
+=> O(m2 n2) overall. 
+
+
+
+An improvement: 
+
+•    As the top-left moves along a row, some columns are repeatedly 
+
+scanned: 
+
+
+
+•    Idea: 
+
+o    We only need the number of 1's. 
+
+=> use a cache. 
+
+
+
+o    Pre-compute cache for each row before moving topleft-corner along row. 
+
+•    Code: 
+
+•    
+
+•      // ... 
+
+•    
+
+•      // Start with top left at i,j and find largest rectangle of 1's
+
+. 
+
+•    
+
+•      Point growRegion (int i, int j)
+
+•      {
+
+•        // 1. best_a and best_b will record the best bottom-right 
+
+corner so far. 
+
+•        int best_a = i,  best_b = j;
+
+•    
+
+•        // 2. a and b will range over possible locations for the 
+
+bottom-right corner. 
+
+•        int a = i,  b = j;
+
+•    
+
+•        // 3. There is no need to search below rowMax, which is 
+
+updated 
+
+•        //    as we proceed. 
+
+•        int rowMax = M-1;
+
+•    
+
+•        // 4. Scan left to right along row i using index b as long as
+
+there are 1's. 
+
+•    
+
+•        while ( (b <= N-1) && (A) != 0) {
+
+•    
+
+•          // Replace this: 
+
+•          //   a = i; 
+
+•          //   while ( (a <= rowMax) && (A[a] == 1) ) 
+
+•          //     a = a + 1;  
+
+•          //   a = a - 1; 
+
+•          // with: 
+
+•    
+
+•          // 4.1 Descend into current column (column b) as far down 
+
+as possible - in time O(1)! 
+
+•          a = i + cache - 1;
+
+•          
+
+•          // 4.2 Update rowMax if we stopped at an earlier row. 
+
+•          if (a < rowMax)
+
+•            rowMax = a;
+
+•          else
+
+•            a = rowMax;
+
+•    
+
+•          // 4.3 Check to see if found a larger rectangle. 
+
+•          int area = computeArea (i, j, a, b);
+
+•    
+
+•          // 4.4 If the rectangle is larger, update. 
+
+•          if (area > maxArea) {
+
+•    
+
+•            // ... 
+
+•    
+
+•          }
+
+•    
+
+•          // 4.5 Continue with next column. 
+
+•          b++;
+
+•    
+
+•        } // endwhile 
+
+•        
+
+•        // 5. Return best bottom-right corner. 
+
+•        return new Point (best_a, best_b);
+
+•      }
+
+•      
+
+•    
+
+•      // For each row, create the cache that's used repeatedly in the
+
+row. 
+
+•    
+
+•      void fillCache (int i)
+
+•      {
+
+•        // 1. Initialize, since cache is created just once. 
+
+•        Arrays.fill (cache, 0);
+
+•    
+
+•        // 2. Walk across the columns. 
+
+•        for (int j=0; j < N; j++) {
+
+•    
+
+•          // 2.1 For each column position (i.e., potential top-left 
+
+corner), 
+
+•          //     find the longest column of 1's. 
+
+•          for (int a=i; a < M; a++) {
+
+•            if (A[a][j] == 0)
+
+•              break;
+
+•            else
+
+•              cache[j] ++;
+
+•          }
+
+•    
+
+•        } // end-column-scan. 
+
+•    
+
+•      }
+
+•      
+
+•    
+
+•      public int findMaxRectangleArea (int[][] A)
+
+•      {
+
+•        // ...  
+
+•    
+
+•        // Create space for cache - use maximum possible size. 
+
+•        cache = new int [N];
+
+•    
+
+•        // ... 
+
+•    
+
+•        for (int i=0; i < M-1; i++) {
+
+•    
+
+•          // Fill cache for row i. 
+
+•          fillCache (i);
+
+•    
+
+•          // Scan columns in row. 
+
+•          for (int j=0; j < N-1; j++) {
+
+•    
+
+•            // Find the largest possible rectangle with topleft at i,
+
+j. 
+
+•            Point p = growRegion (i, j);
+
+•            
+
+•          } 
+
+•          
+
+•        } // end-outermost-for 
+
+•    
+
+•        // ... 
+
+•    
+
+•      }
+
+•    
+
+•      // ... 
+
+  
+
+•    Improvement in complexity: 
+
+o    We have reduced growRegion to O(n) (number of columns). 
+
+o    Overall: O(m n2). 
+
+o    However, we require O(n) additional space. 
+
+
+
+http://www.mitbbs.com/article_t/JobHunting/31786203.html
+
+
+
+刚结束了Google电面，Software Engineer职位。
+
+
+
+1. 要求存储gmail的日志，给定发信时间，发信人，收信人，要求设计数据库表，存储
+
+日志，并给出制定访问的SQL语句。
+
+
+
+2. 如何设计日期时间、发信人、收信人的数据存储方式，节省数据库空间？
+
+
+
+3. 给定一段代码，改错，如下：
+
+
+
+   W * SSS :: getW ( int id ) const
+
+   {
+
+        Lock( lock_ );
+
+        iterator it = find ( id );
+
+        if ( it != end() ) {
+
+            return * it;
+
+        }
+
+        W * p = new W( id );
+
+        insert( p );
+
+        return p;
+
+   }
+
+
+
+4. 如果同时有许多程序并发执行上述代码，而 find() 的hit percent=99.99%，如何
+
+修改上面的代码改进效率？
+
+
+
+大概就是这些，希望对大家有所帮助。求Bless。
+
+http://www.mitbbs.com/article_t/JobHunting/31789573.html
+
+
+
+GOOGLE
+
+1. Research 因为我是做NLP的,machine learning涉及了一些，问的比较细，有点烦。
+
+。。
+
+2. 找一个string出现最多的字母，扩展问了很多，内存，多核CPU，多个多核CPU 
+
+machine...一开始给的hashmap的解法最后combine会有点问题，反正吭哧吭哧的答了，
+
+最后自己觉得并没有improve多少time complexity..
+
+http://www.mitbbs.com/article_t/JobHunting/31646615.html
+
+
+
+上上个周五进行了Google onsite面试，职位是SDE，
+
+recruiter说这个周二开会进行讨论，周三或者
+
+周四会有消息，在此和大家分享一下自己的经历，
+
+比较紧张，担心结果如果不好，自己可能没心情
+
+写这个帖子。
+
+
+
+我人在欧洲，面试的是seattle office的职位，
+
+过了两轮电面之后，google将我安排到google zurich
+
+office进行onsite面试，开始recruiter告诉我onsite
+
+是5轮，4轮技术面试+ 1轮thesis review(可能我是phd
+
+的缘故)，但是最后面试的时候没有thesis review这轮，
+
+也许是因为跨地安排面试不是很容易找到相关背景的人，
+
+还有就是我面试之前貌似没有签任何的NDA协议。
+
+
+
+第一轮: 一个nice 中年German lady，人很好，和我
+
+说第一轮从简单的开始，算法设计和编程
+
+题目是 print a power set of an input set. 这个题目
+
+估计大家都知道，我花了5分钟做法分析了算法，讲解了
+
+算法流程，得到赞许之后，完成了白板coding，完成之后
+
+还提了一下test cases，看起来她比较满意，之后我们
+
+坐下来聊了我的research 项目和简历。
+
+
+
+第二轮:是一个东欧的年轻人，看起来很nice，进来问我的
+
+题目是:考虑网上有N个int类型的stream input，如何设计
+
+一个方案来正取地记录所以的data并正确地排序，其实就是
+
+如何merge sort大规模的来自不同source的数据,但是他
+
+在一开始的时候没有吧题目讲的很清楚，我开始以为是简单
+
+地小规模地merge sort多个不同地source，让我design class，
+
+就开始在白板上讲解自己的方法和设计，在交流过程中，发现
+
+其实他并不是一个真正nice的人，我在讲的时候努力和他有交流
+
+但是他有一种浅浅地傲慢感，最后当我快做完的时候，他突然
+
+说他的数据是非常大规模的数据，这个设计有问题，这个时候只有
+
+5mins了，我猛然意识到不对，马上开始和他讨论大规模的问题，
+
+我给出了用文件把数据分段存储的方案，记录每个文件的min max
+
+范围，然后对于新的数据进行选择性地merge，他说是一个合理的
+
+方案，但是最后时间不够，我没能在白板上写完类和函数设计，
+
+他也一直在催我说，时间不够了什么的。。。
+
+
+
+第三轮:一个年轻的瑞士小伙，我们开始从聊在浏览器中type 
+
+www.google.com 回车开始，一直讨论如何设计网络以及后台
+
+服务器的安排，等等，开始简单，但是后面就比较地深，问
+
+的很细各种细节的处理，答完后他说他非常满意。然后是一个
+
+算法设计和编程题目，题目很简单，主要是考虑如何利用bit和
+
+位运算来save space，我比较轻松地完成了，他表示赞许.
+
+
+
+第四轮:一个中年西班牙人，有些腼腆但是比较nice，我开始的
+
+时候想缓解一下自己的气氛和压力，就提出给他看一下我的research
+
+结果的video，他看了觉得很不错。然后是一道算法设计和编程
+
+题目: 给定一个硬币集合{10,5,2,1},给定一个input amount，找出
+
+所有的硬币组合其sum可以等于这个数额，硬币可以被重复使用，
+
+就是说amount = 4, 集合可以是{2,2}. 我开始想了一下算法，
+
+找到了基于递归的算法设计，然后在白板上coding了整个算法，
+
+最后已经比较累了，就问了interviewer说觉得这个算法和coding
+
+如何，他看了一下说you did a good job.
+
+
+
+总结一下，觉得4轮中就是第2轮的表现不好，我觉得当时interviewer
+
+问问题有些confused，当然也和自己在大规模方面经验不多有关，没有
+
+足够的敏感性，另一方面，在欧洲多年的经验让我体会到东欧人一般对于
+
+中国人不是很好打交道。其他三轮按照interviewer的反应应该说都是good，
+
+当然不排除自我感觉误差，在这个版上看过很多前辈们的经验，也得到了
+
+很多朋友的热心帮助，表示最诚挚地谢意，祝大家都能好运！
+
+http://www.mitbbs.com/user_info/maxq/19ef9c860b4a2cdb23e88a95ce
+
+
+
+经过了三个月的断断续续的面试和准备，最近一阵抓了很多时间努力准备，
+
+本以为最后的一次面试能弥补前面的不足，可惜还是功亏一篑...
+
+想想主要是自己编程水平不行，不能快速的写出bug free code，另外
+
+design和算法方面有差距，另外是前面的准备不足，后面拼命努力最终
+
+还是无补 
+
+
+
+把面试题给大家分享，希望大家都能拿到满意的offer。
+
+
+
+
+
+1) 一个range的序列（链表或数组），如[1,3], [2,6], [8,10]，[15,18]
+
+写程序合并有重叠的range，比如上面的序列合并为[1,6], [8,10], [15,18]
+
+
+
+如果这个序列不是静态的，而是一个数据流，如何 处理？
+
+
+
+=> 后来听说了interval tree，不过还是不太清楚具体如何解决，
+
+有大牛能详细说说么？
+
+
+
+2) 利用快速排序的划分方法，把数组分成三部分，< val, = val, > val。
+
+
+
+=> 后来发现 programming peals 上有原题.. 
+
+
+
+3) 对于google查询的词组成的动态的数据流，在任意时刻取出10个完全随机的查询。
+
+
+
+=> 当时死活没答上来，后来在板上发现是经典的 reservior sampling，早点到板上看
+
+面经就好了..
+
+
+
+4) 把一个字符串转换成32bit的整数
+
+
+
+=> 要注意处理溢出的情况
+
+
+
+5) 在一个数组中寻找三个数，使得它们的和为0
+
+
+
+=> 这个是找两个和为0的数的扩展
+
+
+
+6) 大概是用一位数组来表示二维数组，但是每一行的元素个数可以不同，实现get，
+
+set函数
+
+
+
+=> 这个算是比较简单的
+
+
+
+7) 已知每个待查找的字符串长度为10，如何在一个很长的字符串的序列里快速查找这
+
+样的字符串
+
+
+
+=> 当时的思路是，遍历字符串把所有长度为10的的字符串算出累加值，
+
+类似于 sum = a0 * 10 + a1 * 10^2 + ... + a9 *10^9，然后用这个sum
+
+做hash，面试官ms觉得还马马虎虎。应该有更好的办法。
+
+
+
+8) 写程序生成边长为n的如下的方阵
+
+
+
+1  2  3  4
+
+12 13 14 5
+
+11 16 15 6
+
+10 9  8  7
+
+
+
+=> 顺时针生成即可，注意边界条件
+
+
+
+9) 应用程序的re-order的buffer的设计,如果满了可以丢弃
+
+大概是应用程序需要in order的数据包，但是收到的数据可能是乱序的
+
+（类似于IP分片，每一个数据片有一个序列号，但是不同的数据片
+
+到达应用程序的顺序可能和发送的顺序不一样，引起乱序）。然后有
+
+一个buffer，可以存放几个数据片，问如何设计算法通过这个buffer
+
+把数据片变成有序。说了仿照IP分片重组，设置timer再加上ack来做，
+
+面试官好像不太满意。不知道正确的解法是什么
+
+
+
+
+
+10) 假设有很多多边形，最大的是地球，每一个国家可以认为是一个多边形，每一个省
+
+，市，区，小区，楼都可以认为是一个多边形，这些多边形之间要么是相互包含的，
+
+要么是互相没有交集的，（不存在overlap的情况）。给出一个多边形， 要求写程序求
+
+出最小的包含它的多边形。已知有现成的函数可以判断两个多边形是否相互包含， 
+
+iscontained(poly p1, poly p2)。
+
+
+
+如何加速？如果在多机的情况下呢？
+
+
+
+=> 可以用树结构表示包含的关系。
+
+
+
+可以用二分搜索做加速。
+
+
+
+多机的话可以range一个机器处理一个区域，另外要考虑前端处理机的负载不要成为瓶
+
+颈，所以让每个机器自己判断此多边形是否包含。
+
+http://www.mitbbs.com/article_t/JobHunting/31827743.html
+
+
+
+公司名就不说了
+
+题目是给定一个unsorted int array, 怎么找到第一个大于0，并且不在此array的
+
+integer。
+
+比如[1,2,0] return 3, [3,4,-1,1] return 2
+
+
+
+我给了2个算法，一个是sorting: time O(nlogn), space O(1), 一个是bitmap of 
+
+integers， time O(n), space O(n)。 但面试的人告诉我都不是最优解，有time O(n)
+
+, constant space的解。。。现在都没想明白，大家集思广益吧
+
+http://www.mitbbs.com/article_t1/JobHunting/31831403_0_1.html
+
+
+
+攒rp, 发面经, 猛烈求bless.
+
+
+
+除了我自己的，还汇总了几个朋友的G面试，多数都是一个月以内的,少数3个月以内的
+
+。有phone有
+
+onsite,请某狼13打小报告的时候好好data mining.
+
+
+
+1.给字符串求频率最高字符。字符串大咋办，多核咋办。
+
+
+
+2.俩数组交集。有序或无序。
+
+
+
+3.实现cache.
+
+
+
+4.给字符串，里边是几个单词中间没空格，输出所有可能的句子。比如“好运气”，输
+
+出好空格运气。
+
+
+
+5.数据流统计最近一个小时流量。
+
+
+
+6.写程序找最大convex多边形。
+
+
+
+7.复制无loop的有向图。
+
+
+
+8.给字符串找最短一段出现过abc。
+
+
+
+9.给一段内存，怎么设计malloc和free.
+
+
+
+10.设计密码产生器，不能是字典里单词。
+
+
+
+11.矩阵有障碍物找路径。
+
+
+
+12。给一堆区间找有没有交集。
+
+
+
+13. 有序数组找给定sum.
+
+
+
+14. 实现hashtable.
+
+
+
+15. 猜数字的，找使得最坏情况下猜的数字和最小的策略。
+
+
+
+16。一管子硬币AB都只能从两边取求A最大值那个。
+
+
+
+17. a[10] 和 malloc出来的区别
+
+
+
+18. BT 俩节点最低祖先。
+
+
+
+19. 给出生证明，求俩人最近的相同祖先。
+
+
+
+http://www.mitbbs.com/article_t1/JobHunting/31721459_0_1.html
+
+
+
+刚刚从了google的offer，base 116k，bonus 15%, stock unit 160, relocation 
+
+7500。由于签了保密协议，具体的面试题就不详细透漏了，都是很基本的算法题，
+
+先说算法，再coding，没有长老级别的难题，也没问什么其他东西，就是算法。听
+
+说最近google招人很多，大家好好准备算法，现在进google真的没有以前想象的那
+
+么难了。
+
+
+
+开始找工作以来就在这个版上取经，收益良多，所以也想分享一下自己找工作的经
+
+验，回馈版面。
+
+
+
+我是fresh cs phd，学校排名50左右，找工作开始就将目标定在硅谷，因为喜欢那
+
+里的天气和中餐，初期也会投些其他地方的大公司，积累积累面试经验。一共拿到
+
+了A，O，BB，G，M五家大公司的onsite，也许是被人看出来了只想去硅谷，A和BB的
+
+onsite都挂了 ^_^ 拿到了O和G的，M由于时间太晚决定从了G就没去。另外还有些其
+
+他中小公司的电面，感觉中小公司的电面太注重实际经验和语言细节，对我这种fr
+
+esh学生来说，反而不如大公司的电面好通过。
+
+
+
+下面说些我复习准备时的经验，版面上各种复习资料经验已经非常多，在这里我主
+
+要想从时间性价比角度谈谈我的体会，因为大部分申请者时间有限，往往同时还要
+
+忙于毕业或者其他事情。诚然，如果将所有知识点，能找到的面试题，教材，复习
+
+材料都能复习的滚瓜烂熟，那么面试必将无往而不利，不过我想可能大部分人都没
+
+这么多时间精力吧。
+
+
+
+1.算法书
+
+
+
+我用的是algorithm in C和programming pearls。CLRS是我算法课的教材，但我觉
+
+得CLRS各个章节写的比较孤立，另外过于注重理论，比如复杂度的推导等，不太符
+
+合面试时候对算法考察的要求，所以就没看。相反，algorithm in C很注重各个算
+
+法，尤其是同类算法（比如sort）之间的发展演化关系，以及内在联系，什么时候
+
+用什么算法更好之类的，而programming pearls更是一切以实际应用中的需求出发
+
+，所以我觉得这两本算法书是比较适合面试时候复习参考的。algorithm in X针对
+
+各种语言有不同版本，algorithm in C是最薄的，虽然我不用c写程序，但是觉得理
+
+解起算法来没有任何困难，所以强烈推荐。
+
+
+
+2.编程语言
+
+
+
+我的主要语言是C++和Java，C++以前用的多些，最近3年都是java，所以面试时候以
+
+java为主。我复习的时候就看了C++和java的online tutorial，其中java只看core
+
+java部分。当然，这些tutorial肯定不能应付有些公司非常细节的语言考察，我的
+
+办法是用面试题来复习。比如看BB的面试题的时候，我就会把出现次数较多并且我
+
+不太熟的知识点查一下弄清楚。后来发现其他公司对语言的细节考察也没有超过BB
+
+的。这样准备的好处是花时间较少，不用啃effective c++之类的大作，而且一般而
+
+言，尤其是大公司，对语言的考察比重是远远没有算法高的
+
+
+
+3. 面试电子书
+
+
+
+这个大家都知道，careercup 150题和programming interview exposed。个人感觉
+
+PIE写的要好的多，里头题目数量和难度都比较适中，而且着重分析怎么思考问题的
+
+过程。而careercup 150选的题难度明显偏难，而且很多就是光秃秃的扔个解法在哪
+
+。
+
+
+
+4. 面经
+
+
+
+这里强烈推荐mitbbs的面经，强烈不推荐careercup网站上的面经。我个人觉得只要
+
+把mitbbs上的面经以及大家讨论的方法研究透了，应付所有面试都足够了。career
+
+cup上的题目太多，光一个A公司就1000题以上，而且上面讨论的人的水平实在是不
+
+敢恭维，要么题目都说错，要么讨论个十几条连题意都没弄懂，最后的答案更是可
+
+笑的五花八门，很少有能讨论对正确答案的。更要命的是这题目是面的什么职位，
+
+什么背景下出的，更是交待不清。相反，mitbbs上的题目数量不但少而经典的多，
+
+更主要的是大部分以面经形式出现，可以知道是面什么公司什么职位，什么上下文
+
+情况下出的题，对于复习的帮助要大的多。而且不得不承认，咱中国人的技术水平
+
+还真不是盖的，很少有在版面上讨论不出来的经典面试题。
+
+
+
+5.面试
+
+
+
+关于具体的面试技巧，怎么准备behavior问题，版上已经说了很多，我想再补充两
+
+点我的体会：一是不要冷场，但是言多必失，只说该说的话。跟面试官必要的寒暄
+
+当然不可少，随时说出自己的想法和思考过程也很重要，但是切忌不要说的过多。
+
+例如说behavior问题，用3，4句简短的回答一下就够了；再比如算法问题，一般我
+
+喜欢先说最简单容易想的算法，比如brute force的，然后如果面试官如果让我优化
+
+，我再优化，如果有多种优化，还是先说最容易想的，比如面试官说时间复杂度还
+
+可以改进，那么就说改进时间复杂度的，如果再说空间复杂度也还可以改进，那么
+
+就再说改进空间复杂度的，我一般不会一次把我知道的最优解法说出，特别是解法
+
+很多，最优解法又相当不容易想的情况下。这样做好处很多，可以先用简单解法让
+
+自己放松情绪，同时也避免让面试官觉得你只是会背答案，最主要的是给了展示你
+
+与面试官交流沟通解决问题能力的机会。面试官最喜欢你在他的指导下，一步步得
+
+出最佳解法，所以技巧就是面试官怎么要求，就怎么改进。第二个体会就是遇到做
+
+不出来的题怎么办，答案是既不要气馁，也不要放弃，还是那句话，面试官最喜欢
+
+通过和他的讨论沟通解决问题，所以一边积极说出自己目前的想法，以及困难在哪
+
+，一边注意面试官的提示，和面试官共同讨论将难题解决。我的体会是这种方式做
+
+出题来的评价往往比直接扔出最佳答案还要好。
+
+
+
+最后祝大家找工作顺利，offer多多 ：）
+
+http://www.mitbbs.com/article/JobHunting/31811209_0.html
+
+
+
+Given P machines, each containing an array of N elements, find the medium of
+
+the array resulted by concatenating all the arrays on the machines.
+
+
+
+You cannot move data across machines.
+
+http://www.mitbbs.com/article/JobHunting/31813235_0.html
+
+
+
+有N个线段在一条直线上， 已知它们的起点和终点， 求覆盖的总长度。 线段可以有
+
+overlap
+
+
+
+Thanks.
+
+http://www.mitbbs.com/article/JobHunting/19920704_0.html
+
+
+
+前面不说了。技术问题：
+
+Given a source word, a target word, and a dictionary, how to transform the 
+
+source word into target word by changing only one letter in each step. The 
+
+word you get in each step must be in the dictionary.
+
+
+
+一些数，不知道有多少个。你的内存有限。要你读完这些数之后立刻以相同几率选出一
+
+个。
+
+http://www.mitbbs.com/article/JobHunting/31817747_0.html
+
+
+
+电话面试，第二个时间不够，最后一个问题没来得及回答的完，面经随后上。
+
+很紧张，求bless
+
+
+
+======================= update ==================
+
+刚刚收到信被拒了，拒的速度真快。不过不是很沮丧，可能是因为拒的很快，面试第二
+
+天就被拒了。又收到其他的interview，刚刚被MS面完，求大家继续bless。。
+
+
+
+现在公布面试题
+
+第一个reviewer：
+
+先瞎扯research，然后让写binary search的code，从sorted的array里找一个key 
+
+number，不难，但是要注意你写的code的严谨性，要check指针是不是空，array index
+
+会不会是负数，两个数相加是不是会overflow等等。
+
+然后问c里面什么是volatile，怎么用c实现exception handler 等等
+
+
+
+第二个reviewer：
+
+一上来就问我有没有industry experience，我的简历里只有research，没有industry
+
+，就是为来industry找intern的，他可能没看我的简历。然后他 就给我发了一张图，
+
+图上画了个skip－list，他问我看到这张图我想到了什么，问我如何从skip－list里面
+
+找一个数，我花了好一会儿才连猜带蒙 明白skip－list是什么东西，其实是很简单的
+
+数据结构（大家可以去wiki上查）。除了发图给我之外，他没有怎么解释，我问了好几
+
+个问题才明白每个 箭头指向的是数值还是指针，然后让我写code，在skip－list里面
+
+search，这也不难，就是猜这个data structure花了我好一会儿时间，比较郁闷。
+
+
+
+下面一个问题是如果有trillions of numbers，怎么sort，这是一个关于performance 
+
+scalability的问题，我说了一个方法，他没怎么听懂，他又问问题，然后后来他说时
+
+间来不及了，我也没来得及解释。最后的时候，我忙着感谢他的时 间，他也冷冷的，
+
+我就知道不行了。
+
+
+
+题目大体就是这些，如果我没猜错的话，我就栽在第二个reviewer手里了，感觉不如第
+
+一个reviewer友好，一开始感觉不太好，最后果然被灭了， 觉得挺冤的，skip－list
+
+不难，我只是没有听说过而已，如果他能稍微解释一下那张图的话，我就不用花那么多
+
+的时间去猜，后面我就会有更多的时间来解 释和回答问题了。一开始，第二个
+
+reviewer电话还打错了，打到我办公室去了，确认面试的时候我特地让我的recruiter
+
+更正了一下电话号码，我 也收到确认回复了，不知道为什么他会打错。
+
+http://www.mitbbs.com/article/JobHunting/31816131_0.html
+
+
+
+GOOGLE onsite 1周后，刚收到recruiter的email要我给她打个电话discuss feedback 
+
+from interviews。。。这是什么情况？ 要拒我写EMAIL不是更容易么。。有啥好
+
+discuss的。。
+
+
+
+俺不知道啥是包子，也不知道我有没有包子。。求知道内情的人指点下，免得一个晚上
+
+都在想。。。。多谢多谢。。
+
+
+
+附面经：
+
+onsite：
+
+1）count duplicate in a sorted array
+
+2) determine if a string contain a given character list
+
+3) system design: design online game
+
+
+
+由于local,没有phone interview，第一轮也是onsite
+
+1) count paths in a matrix with obsticles
+
+2) find words in a string.
+
+
+
+终于拿到offer，从上个月16号on-site完到今天，一共等了1个多月。今天接到
+
+recruiter的电话后兴奋地在办公室里蹦了好几下，我旁边的哥们都震惊了。哈哈。
+
+
+
+先报下背景，fresh cs master, 无牛实习，在学校一直跟着一个还不错的项目。
+
+google给了我10.5w base+15% bonus+150 stock，不知道是个什么水平，但我已经很满
+
+足了，准备从了。
+
+
+
+第一个电面：
+
+1. 比较hashtable和BST，神马时候用hashtable,神马时候用BST。各自的优势与缺点。
+
+2. 那人在doc里粘了个BST的图，然后让我分别写下preorder, postorder和inorder。
+
+然后问我已知这三个order的结果，能不能construct原本的bst。
+
+3. 填这样一个函数 String reorder(String s, String order), 也就是要把s根据
+
+order的顺序重新排序，然后返回。比如reorder("banana","na")应该返回"nnaab"。
+
+order里没有出现的字母放在最后面就行了。
+
+
+
+第二个电面：
+
+1. 聊了一下我现在做的项目
+
+2. 比较array和linked list的。
+
+3. 两个linked list，如何找到intersect的那个node。
+
+4. 给一个integer array，允许duplicates，而且其中某个未知的integer的
+
+duplicates的个数占了整个array的一大半。如何有效的找出这个integer？
+
+
+
+on-site
+
+美丽的亚洲姐姐：
+
+1. design caching
+
+2. 貌似跟random number有关的，记不得了。
+
+
+
+白人老大爷：
+
+1. 给个float BST, 写个search(float target)的算法找出离target最近的数。
+
+
+
+欧洲帅小伙：
+
+1. design google search suggestions
+
+
+
+印度哥们
+
+1. 跟trie相关的算法。
+
+
+
+经验：
+
+请大家一定要对自己有信心，工作是一定能找得到的。小女子先后被ms, amazon, 
+
+vmware, nvidia, zynga, sig拒过，但从没放弃过。一定要从失败中获得教训，总结经
+
+验，多来版上瞧瞧，胜利就在不远的前方。面试技巧上，我觉得有
+
+两点很重要：第一个是化身为解说帝，见到一个题目的时候，想个几十秒，如果有思路
+
+了，就要开始跟面试的人叨叨，你的算法是怎么样的，要用到神马data structure, 时
+
+间空间复杂度是神马；很多interviewer基本这个时候就会
+
+说，”很好很好，开始code吧！“。如果实在是没有思路，也要跟interviewer叨叨，
+
+确认你题目是否理解对了，能不能套出神马hints。千万不要闷不吭身地三下五除二就
+
+开始写代码，就算你写的又好又快，面试你的人也不一定领情。第二
+
+个是对自己最近做的实习或是项目要准备一套有激情的说辞，on-site的时候几乎每个
+
+interviewer都问了我最近做的项目（我当时重复地快吐了！！！），此时一定要表现
+
+出你对这个项目的极度热爱和你的contribution。我觉得他们都灰
+
+常欣赏对工作有热情和激情的人。
+
+
+
+面试资料:
+
+programming interviews exposed，这本书虽然比较简单，但解题思路和方法非常经典
+
+，如果能灵活掌握，50％的算法面试题木有问题。强烈推荐！
+
+careercup 150，这本书题目类型比较全，但答案太简略了，没有过程分析，比较适合
+
+在掌握一定的知识基础上，进行最后冲刺。如果面试准备时间充裕的话，前期不推荐看。
+
+programming pearls，我看的是第一版，这本书真牛！20多年前的书，看着一点都不过
+
+时。尤其是中间有几个章节sorting, searching可以仔细地看看。因为我也没有做后面
+
+的习题，偶尔大概的扫一下，寒假每天泡澡的一个多小时看
+
+看，十几天看就完了。推荐推荐！！ 
+
+系统地把所有的data structures复习了一遍，网上资料很多。
+
+还看了些topcoder里dp, greedy, binary search的章节。
+
+
+
+http://www.mitbbs.com/article_t/JobHunting/31701523.html
+
+
+
+其实2个星期前就拿到了，不过一直没有在版面上报Offer，实在惭愧。现在在做H1B
+
+和relocation中。
+
+
+
+期间negotiate了下薪水，耗费了一个星期。开始Google给了一个很一般的薪水，我
+
+就回复说要求加9K。最后Google加了5K base和24 stock units。这样就折腾了一个
+
+星期。Google那边要求加薪的话，recruiter会返回给compensation committee，
+
+然后召集人开会讨论，蛮耗时间。保持耐心，结果是值得等待的。
+
+
+
+我准备onsite花了3个星期。期间读了如下的书：
+
+
+
+1、程序员面试攻略 Programmer Interview Exposed
+
+2、编程珠玑 Programming Pearls
+
+3、编程之美 Beauty of Programming
+
+
+
+每本书都通彻的读了一遍，把后面的习题都做了，写在纸上。编程珠玑是彻底的读了2
+
+遍，几乎每读一遍都有新的发现。每天去学校上下bus的时候坐在车上都在看书。
+
+
+
+CLRS这本书尝试翻了翻，但是无奈时间不够，没有细读，只是简单的过了一遍DP。
+
+
+
+大概onsite之前1个星期曾经尝试过练习白板写代码（随便在学校找个没人的自习室便
+
+是），但是后来发现自己写的字不仅难看，而且写出的代码也不够优美。遂跟
+
+recruiter
+
+提要求可否带笔记本去onsite写代码，没想到获得同意。所以我onsite的代码都是敲键
+
+盘写的。
+
+
+
+我现在是在学校读完CS硕士，在做RA。准备onsite那3个星期老板出差，所以我都没有
+
+请假，直接在准备面试。呵，不然的话就得请假拉。
+
+
+
+最后祝福版内的筒子们找工作一切顺利。要有耐心，坚持下去。
+
+
+
+-----------------------------------------------------------------
+
+
+
+下午刚面完Google Mountain View，趁记忆还在，把经历写下来。
+
+
+
+因为签署了NDA，所以不方便把题目直接贴在这里。只能说个大概。若是有兴趣的筒子
+
+，可以私下交流。
+
+
+
+早上10点半开始。面第一位阿三哥，开始侃项目，谈跟专业相关的东西，追问的很深，
+
+最后还有15分钟的时候要求写代码，要求inplace对一个数据结构内的元素重新排序，
+
+昏倒啊。在白板上画了简单的结构，讨论后获得首肯，然后开始写代码。
+
+
+
+我把笔记本电脑带了过去，所以在键盘上敲。大概一会就写出来了。（若是在白板上写
+
+，怎么死的都不知道阿）。然后三哥问，are you done？我说跑几个测试案例试试看。
+
+然后在纸上写了5个案例，一行一行的检查。立马发现2个bug，更正之。三哥看到快没
+
+时间了，说你跑这个案例试试。遂发现一个新的bug，更正之。最后代码写出来完整。
+
+三哥满意的走了。
+
+
+
+第二位是个白人。一上来就做题。开始我理解以为是一个DP，后来沟通之后发觉可以有
+
+很简单的解法。直接奔向O(n)的解法。跟面官沟通完想法，最后获得同意后在笔记本上
+
+敲键盘。很快写了出来。面官随后问测试案例。我直接在笔记本电脑里面写测试代码，
+
+写了10多个。面官随后表示满意。我表示可以compile跑跑看。解决了compile的error
+
+，有一个测试案例不通过。解决bug，最后所有测试案例通过。
+
+
+
+下午，第三位是个黑人。这场面试最凄惨了，希望我的经验教训能帮助大家。开始一个
+
+很简单的题目，2叉树遍历的，5分钟不到搞定，写了代码。然后黑人老兄把问题延伸，
+
+问了一个复杂的情况，我没有跟面官沟通，就直接写代码。有错误。被指正出来，再修
+
+改代码，面官说还是有错误，在修改代码，面官说还有错误。最后我说，我们得沟通沟
+
+通，遂又回白板开始讨论算法。最后一刻把问题解决出来，但是没时间写代码了。我看
+
+了下黑人老兄的笔记本电脑，昏倒，他把我的每一个版本的代码全部写了下来！包括第
+
+一个版本有错误的，然后第二个版本，第三个版本。遂后悔不已，应该先在白板前沟通
+
+好再写代码的。当时黑人老兄在我说完算法之后面无表情，我应该询问是否有无bug。
+
+不过最后黑人老兄说，虽然你没有时间写正确的代码了，但是能走到这步能把问题解出
+
+来的人不多。
+
+
+
+第四位一个白人，一进来沉着脸，一副别人欠你钱的表情。开始一个简单的问题，
+
+Programming Pearl上第一章的案例题，大家都知道了吧。之后遂把数据规模提高到
+
+10^10。我给了2个解法。之后把数据规模提高到10^15，输入已经无法存在一台电脑
+
+上，说咱们有1000个电脑，每个电脑上存一部分输入，你怎么解决。这个磨蹭了好久，
+
+最开始我有个brute force的想法，当时没有说出来，觉得不够好，后来跟面官折腾了
+
+半天，才发觉最开始的想法就是他想要的。最后白人老兄终于脸开笑容，握手拜拜。
+
+
+
+第五位一位三哥，讨论open end question。但是问的很深，涉及到数据库的实现，多
+
+线程，cache的实现，Javascript，等等等等，这些都是我简历上写做过的东西，我把所
+
+有可能的情况全部都列了出来，说的嗓子都哑了。三哥面无表情，但是自我感觉还说的
+
+挺多挺全的。
+
+
+
+大致就这些。。。回宾馆咯。下周会出hiring committee的结果，然后要reference，
+
+整个结果会在3个星期左右的时间出来。
+
+
+
+整个一天我喝了6杯咖啡提神。哎～
+
+
+
+PS：问了下，在onsite面试之前，面官之间不会互相沟通。也就是说，每一位面官走进
+
+来，都好似重新面试一般。在面试过程中，会有一个checklist，每次面试完，面官会在
+
+上面写问了哪些问题，然后传给下一个面官。
+
+http://www.mitbbs.com/article/JobHunting/31570949_0.html
+
+
+
+整个过程很折腾人： 说好的上午11点，结果到11：30am没人打过来，打电话到人力资
+
+源的联系我的人，被告知要面我的烙印还在来办公室的路上，又重约了个1：00pm，打
+
+过来要我用google的共享文档写程序，问题是之前的电子邮件里根本没提要准备电脑，
+
+只好回家，路上烙印有打来电话，问何时能到，因为他2：00pm还要开会。。。
+
+
+
+问了两题，答的很糟，将题目列出和大家讨论一下：
+
+
+
+1。 给出一个柱状图，求其中最大的长方形面积.
+
+2。 给出一个数组，创建一新数组，删掉原数组的重复的数。（问了能不能用bitmap或
+
+排序，被告知不能用很多额外的内存）
+
+
+
+另外，记得有人发过一个博克的连接是专门收集Google面试题的，能否告诉我？现在找
+
+不到了。
+
+
+
+http://www.mitbbs.com/article_t/JobHunting/31511261.html
+
+
+
+1.公司和申请者的skill set match很重要。我托朋友refer我申请Amazon和Yahoo, 甚
+
+至Epic,连面试的机会都没有。我觉得就是我没有具备他们需要的skill set。所以，如
+
+果你没有拿到一些公司的面试，请不要灰心，更好的，更适合的公司会在后面等着你。
+
+2.面试时主动要题做有时会有好效果。在我两次Google Phone interview时，第一个题
+
+目都没有答好。当然，第二个题目做的都不错。到了我提问的时候，我就直接说让他们
+
+再给我出一道technical question, 因为我对自己的算法还是有信心的。于是，面试官
+
+都很仁慈的再让我做了一道题。我觉得就是因为我这道”讨来的题”做的不错，所以最
+
+后面试官对我的评价都是”quite positive”。
+
+3.最好能在手上有其他公司offer或者面试机会的时候申请面试。大部分公司的HR在面
+
+试时都会问你有没有其他的deadline，表面上是为了能让你在deadline之前得到答复，
+
+其实也是看你这个人是否别的公司也想要。所以建议大家为了保险起见，先从小公司面
+
+起，一是积累经验，二是拿上几个offer这样大公司更愿意要你。当然，公司一般也会
+
+为了能让你在deadline前得到答案，加速处理你的case。
+
+
+
+最后，感谢我的老婆和岳母大人。为了能让我安心找工作，她们付出了很多的辛劳。在
+
+此表示由衷的敬意！:>
+
+
+
+好了，闲话少说，奉上面经， 祝大家早日找到理想的工作！:
+
+
+
+Microsoft
+
+Interview 1 (phone interview)
+
+1.    What's your most challenging problem in your projects? (I try to use 
+
+the STAR principle: situation, task, action, result.) 
+
+2.    If you can go back in time, what would you do better?
+
+3.    What's your preference for the positions in MS? (testing or developer)
+
+  
+
+4.    What's your experience in testing?
+
+5.    What's a binary search tree?
+
+6.    Suppose you are going to explain this concept to a 5 year old girl, 
+
+how are you going to explain it? 
+
+7.    How to test a calculator (mouse/chair/glasses/whatever)?
+
+8.    How to get an applicant's telephone number if you know: First name, 
+
+last name, school, email address? (Pressure question, he will push you for 
+
+more answers. Prepare for at least 10 solutions)
+
+9.    What's the use of binary search tree?
+
+
+
+Onsite Interview (SDET in live team)
+
+Summary of questions:
+
+1.    Sort 0,1 bit array. Use partition and count.
+
+2.    let me give test cases for one of her GUI applications.
+
+3.    Given a movie star relation (co-star in one movie) database, given a 
+
+most popular star (say A), then find the distance of other star to A. BFS.
+
+4.    How to convert an integer array to byte array? How to test elevator?
+
+5.    How do you feel about today’s interview, how much things do you learn.
+
+
+
+Google
+
+Interview 1
+
+1. Implement a code to do wildcast string matching.
+
+e.g. source: readme.txt, query: *.txt, should return true.
+
+2. check whether a Sudoku is valid. 9*9 matrix, and each row, column and 3*3
+
+cell only contain unique integers (in range [1,9]) or empty.
+
+3. Find intersection of two sorted array A, B.
+
+All above questions need to write detailed codes, check input, and handle 
+
+special cases. Need to provide time/space complexity.
+
+
+
+Interview 2 
+
+1. Lots of compiler stuff which I know nothing.
+
+2. Check whether a binary tree is a binary search tree.
+
+Need to write detailed codes, time/space complexity, any improvements?
+
+3. Sampling of incoming integers, then return one sample with equal 
+
+probability.
+
+Time/space complexity, how to prove you are right?
+
+
+
+Interview 3 
+
+(Host bidding 1)
+
+1.    Ask general description of my related projects.
+
+2.    Give a general description of his potential project.
+
+3.    discuss about some implementation details.
+
+
+
+Interview 4 
+
+(Host bidding 2)
+
+He has really exciting project and match my background perfectly, many 
+
+technical questions though, unexpected. The lesson here is that expecting 
+
+technical questions even in host bidding interviews.
+
+1.    Describe in detail of your previous related project. (Android, Google 
+
+API, PhD research)
+
+2.    The major advantages and disadvantages of following languages: C++, 
+
+Python, Java. (He asked for at least 3 disadvantages for each language, if 
+
+you can only give two, he will continue to let you think).
+
+3.    What’s the difference between C# and Java, why you choose C# in one 
+
+of your project?
+
+4.    Consider you are constructing a system for data synchronization, what 
+
+problem will you face, and how you solve it? (I did not do well on this 
+
+question, since for my understanding, the data synchronization is normally 
+
+among process, or among different users, like the one in source code version
+
+control (Git/repo). I finally understand after 15 mins, he wants to know 
+
+about multi-threads synchronization. :< )
+
+5.    What is mutex, semaphore, deadlock? Give examples of them. (That’s 
+
+when I finally realize what he wants to know about synchronization, just the
+
+classic stuff.)
+
+
+
+Interview 5 (Host bidding 3)
+
+The interview runs very smoothly. He basically just talked about which 
+
+experiences I have.
+
+
+
+Facebook:
+
+First phone screen. 
+
+1.    Tell me about your self, your PhD research, what do you want to do in 
+
+facebook.
+
+2.    What’s your applications/projects in Garmin?
+
+3.    Do you use facebook a lot? What do you normally do in using it.
+
+4.    Binary search, complexity.
+
+5.    Bubble sort, best case complexity.
+
+6.    Guess a number in a given range, say 1000. (still Binary search).
+
+7.    When will java destruct object. (automatic garbage collection for 
+
+unused object that no reference points to it, finalize() method)
+
+8.    Java stuff: how to avoid other programmer from changing the function. 
+
+(Final keyword)
+
+9.    What is the transient keyword.
+
+
+
+Second Phone Interview.
+
+1.    Describe your background, and what you are seeking for. Then he tell 
+
+me I am not a good fit for his team, and want to recommend me to the other 
+
+team. He even didn’t want to continue the interview. :<
+
+2.    How to use stacks to simulate queue. (do not use online tool, just 
+
+write and tell him. Use two stacks).
+
+3.    How to find the lowest common ancestor of a binary tree, node do NOT 
+
+have parent pointers. (Recursion, additional check for the case when nodes 
+
+are not in the tree, or only one node is in the tree.) Use collabedit.com, 
+
+really awesome tool.
+
+
+
+Third Phone Interview.
+
+1.    The project they are working on.
+
+2.    The projects I was working in research and internship, all resume 
+
+stuff.
+
+3.    Given a linked list, say A->B->C, print it in reversed order. Time & 
+
+space analysis. What if I want the original list not changed? How about 
+
+multithreads call this functions simultaneously?
+
+http://www.mitbbs.com/article/JobHunting/31601667_0.html
+
+
+
+问了1) 研究, 2) 多线程程序设计, 3) 任意无穷字符串流, 内存有限, 找出唯一一对
+
+重复字符串, 这个我说了哈希表和外部排序, 但是面试人说有更好的办法(后来想也许
+
+是bloom filter), 然后追问外部排序的细节到结束. 估计要挂 
+
+
+
+总结: 面试既是技术活, 又是运气活.
+
+
+
+无论如何, 把我的准备工作放下面, 攒点rp, 希望对大家有所帮助.
+
+
+
+Interview Qs
+
+
+
+Data Structures
+
+
+
+   1. Integer
+
+      - find number of 1s
+
+      - next largest smaller
+
+      - smallest larger number
+
+      - determine if is palindrom
+
+      - itoa, atoi
+
+      - add 2 numbers w/o using + or arithmetic operators
+
+      - implement *, -, / using only +
+
+      - find max of two numbers w/o comparison
+
+      - swap two numbers with +/-
+
+      - swap two numbers with ^
+
+      - given an integer, find the closest number that is palindrome
+
+      - implement putlong() by putchar()
+
+   2. Bit array
+
+   3. Linked list
+
+      - find cycle,
+
+      - find position of cycle starts
+
+      - reverse LL
+
+      - delete a node in middle
+
+      - each node contains a value pointer pointing to a node, 
+
+        duplicate LL.
+
+      - remove duplicates from sorted/un-sorted LL.
+
+      - find n-th to last node to end
+
+      - number is represented by LL, add 2 numbers
+
+   4. Array
+
+      - Longest common substring (LCSubstr)
+
+      - Longest common subsequence (LCS).
+
+      - Longest increasing subsequence (LIS).
+
+      - Longest palingdrome in string.
+
+      - array, elements are +/-, find subsequence of max sum
+
+      - circular array, elements are +/-, find subsequence of max sum
+
+      - find all pairs of integers add up to a sum
+
+      - find all pairs of integers add up to a sum, 
+
+        integers are +/- and sorted
+
+      - find one missing number in N numbers in range [0, N]
+
+      - find two missing number in N numbers in range [0, N].
+
+      - binary search circular array
+
+      - Given {a1, a2, a3, ..}, {b1, b2, b3, ...}, 
+
+        get {a1, b1, a2, b2, ...}
+
+      - Given 2 arrays A and B, A large enough to hold both, 
+
+        merge B into A.
+
+   5. String
+
+      - KMP, Rabin-Karp, Boyer Moore
+
+      - reverse string
+
+      - reverse words in string  
+
+      - strcpy, strcmp, strstr, atoi, itoa, strdup
+
+      - remove duplicate characters in O(1) space
+
+      - Given dictionary, transform one word to another of same length.
+
+      - Given large text, find min cover distance of n words.
+
+      - find longest word made of other words
+
+      - find first non-repeated char
+
+      - remove specified char from a string
+
+   6. Matrix
+
+      - matrix elements are +/-, find submatrix of max sum
+
+      - rotate a matrix by 90 degrees
+
+      - each cell is black/white, find max subsquare with black border.
+
+      - binary matrix, find largest square matrix with 1s
+
+      - binary matrix, find largest rectangle matrix with 1s 
+
+   7. Stack
+
+      - implement stack by queue.
+
+      - augmented stack with O(1) push, pop, min
+
+      - use single array to implement 3 stacks
+
+      - sort a stack in ascending order using only 
+
+        push/pop/top/isEmpty/isFull
+
+   8. Queue
+
+      - implement queue by 2 stacks
+
+   9. Priority Queue
+
+  10. Heap
+
+      - create heap on array
+
+  11. Young Tableau
+
+      - find element
+
+      - get k-th element
+
+  12. BST
+
+      - pre/in/post-order traversal, recursive and iterative
+
+      - pre/in/post-order traversal, recursive and iterative, 
+
+        with parent pointer
+
+      - find height
+
+      - determine IsBST
+
+      - find "next" node of a given node in inorder sequence
+
+      - find k-th inorder element
+
+      - find range of elements
+
+      - find diameter
+
+      - find all path adding to a sum
+
+      - Check if a tree is balanced
+
+      - Convert sorted array into balanced BST
+
+      - Find first common ancestor of two nodes in a BT or BST
+
+      - Link each node to its right sibling
+
+      - Print by level (BFS)
+
+      - Print by level (BFS) in reverse order
+
+      - Determine if 2 BSTs have the same structure
+
+      - Create a mirror BT of a BT
+
+      - Replicate a linked structure
+
+  13. 2-3-4 Tree
+
+  14. Red-Black Tree
+
+  15. Splay Tree
+
+  16. AVL Tree
+
+  17. Trie
+
+  18. Suffix Array
+
+  19. Suffix Tree  
+
+      - LCSubstr (longest common substring)
+
+      - Longest repeated substring
+
+      - longest palindrome
+
+      - substring search
+
+      - data compression
+
+  20. B-Tree
+
+  21. KD Tree
+
+  22. Range Tree
+
+  23. Hash Table
+
+  24. Bloom filter
+
+  25. Disjoint set
+
+  26. Graph
+
+      - DFS, BFS
+
+      - find path existence between two nodes
+
+      - Min vertice set covering all edges
+
+      - shortest path
+
+      - minimum spanning tree
+
+      - min edge coverage by vertex 
+
+
+
+Sorting
+
+
+
+   1. Bubble sort
+
+   2. Insertion sort
+
+   3. Selection sort
+
+   4. Shell sort
+
+   5. Heap sort
+
+   6. Quick sort 
+
+   7. Merge sort 
+
+   8. N-way merge sort (external sort)
+
+   9. Counting sort
+
+  10. Bucket sort
+
+
+
+Search
+
+
+
+   1. Linear search
+
+   2. Binary search
+
+      - Binary search, iterative/recursive 
+
+      - find missing number is sorted array 
+
+      - search in circular sorted array 
+
+   3. Quick Select 
+
+
+
+Dynamic programming
+
+
+
+   1. BST
+
+   2. COV 
+
+   3. ILP 
+
+   4. KS 
+
+   5. LCS 
+
+   6. LSP 
+
+   7. MCM 
+
+   8. ODP 
+
+   9. SCP 
+
+  10. SPA
+
+  11. SPC
+
+  12. TSP 
+
+  13. Given array a[], when i < j, get max(a - a[j]).
+
+  14. levenshtein edit distance
+
+  15. Coin Change problem. 
+
+
+
+Large-scale system
+
+
+
+   1. Bloom filter
+
+   2. Bit-array/bit-map
+
+   3. Heap
+
+   4. Hash table
+
+      - d-left hashing
+
+   5. Sub-division
+
+   6. Database indexing
+
+   7. Inverted index
+
+   8. External sort
+
+   9. Map-reduce
+
+
+
+Discrete math, Probability and Statistics, Numerical Computation
+
+
+
+   1. Permutation
+
+      - 3 colors, how many ways to color a cube?
+
+      - robot, ways to go to diagonal corner on NxN matrix?
+
+      - print all combinations of valid n-pairs of parentheses
+
+      - print all subsets of a set
+
+   2. Combination
+
+   3. Sampling
+
+   4. Random number generator
+
+      - What's a good random number generator?
+
+      - Given random generator [1, 2, 3, 4, 5], 
+
+        generate random in [1..7].
+
+   5. Reservoir sampling
+
+   6. Find median in stream
+
+   7. Card shuffling
+
+   8. Primality testing
+
+   9. Find prime numbers: naive, sieve of Eratosthenes, sieve of Atkin
+
+  10. Randomized primality testing, what's good random generator
+
+  11. Fibonacci sequence 
+
+  12. Factorial numbers
+
+  13. Frobenous numbers
+
+  14. Newton-Ralphson algorithm
+
+  15. Bayes theorem
+
+
+
+Computational algebra
+
+
+
+   1. Convex-hull
+
+   2. Closest pairs
+
+
+
+Computational theory
+
+
+
+   1. Automata theory
+
+   2. DFA
+
+   3. NFA
+
+   4. Regular language
+
+   5. Pumping lemma
+
+   6. Turing machine
+
+   7. NP-completeness
+
+         1. TSP
+
+         2. Vertex-cover problem
+
+         3. Set-covering problem.
+
+         4. Subset-sum problem.
+
+
+
+OS
+
+
+
+   1. Process and thread
+
+   2. Semaphore, mutex, monitor
+
+   3. Function call/call frame
+
+   4. Context switch
+
+   5. Multi-threading
+
+   6. Multi-process
+
+   7. Thread safety
+
+   8. Big/Little-endian
+
+   9. Heap/stack
+
+  10. Malloc/free
+
+  11. Virtual memory, page fault, thrashing
+
+  12. DMA (Direct Memory Access)
+
+
+
+Networking
+
+
+
+   1. 7-layer OSI model
+
+   2. 4-layer TCP/UDP model
+
+   3. TCP/UDP
+
+   4. TCP 3-way handshake (ACK machanism), 
+
+      flow control, congestion control
+
+   5. Things happen after entering url
+
+   6. Routing protocols: BGP, OSPF, RIP
+
+   7. Subnet mask, packet routing on same/different network.
+
+   8. Performance
+
+
+
+Database
+
+
+
+   1. Normalization
+
+   2. External sorting
+
+   3. B-tree, B+-tree.
+
+   4. Relational algebra
+
+
+
+Compiler
+
+
+
+   1. LL, SLR, LALR, LR, GLR
+
+   2. recursive precedence
+
+   3. Operator precedence
+
+   4. Postfix evaluation of arithmetic expression
+
+      - implement a calculator
+
+
+
+C/C++/Java
+
+
+
+   1. const char *, char * const, const char * const
+
+   2. static
+
+   3. volatile
+
+   4. explicit
+
+   5. Object/class
+
+   6. Inheritance
+
+   7. Encapsulation
+
+   8. Polymorphism
+
+   9. operator overloading
+
+  10. Composition/inheritance
+
+  11. Interface, abstract class
+
+  12. Struct/class
+
+  13. 4 default methods of a C++ struct/class
+
+  14. deep copy/shallow copy
+
+  15. C++ name hiding
+
+  16. C++ smart pointer
+
+  17. friend function/class
+
+  18. Multiple inheritance
+
+  19. Virtual inheritance
+
+  20. Constructor
+
+  21. Copy/assignment constructor
+
+  22. Virtual destructor
+
+  23. Virtual function, vtable
+
+  24. Pure virtual function
+
+  25. Macro, typedef, inline
+
+  26. C, C++, Java comparison
+
+  27. Garbage collection
+
+  28. Dangling pointer, free null pointer, memory leak
+
+  29. New/Delete
+
+  30. Malloc/free/realloc/calloc
+
+  31. Lock
+
+  32. Dead lock's four conditions
+
+  33. #pragma directive
+
+  34. Exception handling
+
+  35. try/catch/finally
+
+  36. final, finally, finalize
+
+  37. Java object reflection
+
+  38. C++ templates, java generics
+
+  39. Effect of keeping constructor private
+
+  40. Pass by Value, reference, pointer
+
+  41. Reference v.s. pointer
+
+  42. In-memory file system data structures and algorithms?
+
+  43. Implement singleton
+
+  44. Implement singleton w/o static/global variable
+
+  45. Thread programming possible problems
+
+  46. sizeof operator.
+
+  47. Java: vector v.s. ArrayList
+
+  48. int (a*)[10]
+
+  49. Implement a lock.
+
+  50. Implement a buffer for DataOutputStream.
+
+  51. awk, tr, uniq, grep 
+
+
+
+Other problems
+
+
+
+   1. 2 eggs, 100 floors, find floor that breaks egg 
+
+      minimizing number of drops.
+
+   2. 5 quart jug and 3 quart jug, measure 4 quarts of water.
+
+   3. 100 lockers, open every other i-th locker (i = 1, 2, ..., 100). 
+
+      Final open?
+
+   4. Men on island, can see hat on others only. N men, C hats, 
+
+      days to remove?
+
+   5. 8/12 balls, find the one lighter/heavier
+
+   6. 8/12 balls, find one weighs different
+
+   7. 2 fuses each burns in 1 hour, measure 45 minutes
+
+   8. Bridge crossing, 1, 2, 5, 10. Minual number to pass bridge
+
+   9. Orange, apple, orange and apple, all labeled wrong. Find out.
+
+  10. 3 light switches, only one can be on at a time. Find it out.
+
+  11. Find the biggest, 2 biggest, biggest & smallest
+
+  12. n*m*k cube, how many are on the surface?
+
+  13. Test a pen, ATM machine, webpage, vending machine, program crash?
+
+  14. Given phone #, print all word representations on phone pad.
+
+  15. Find overlap of rectangles
+
+  16. Find median of two sorted arrays.
+
+  17. N computers each hold N numbers. Find median of these N*N numbers.
+
+  18. Recontruct a BT from pre/in/post-order traversal
+
+  19. Recontruct a BST from pre/in/post-order traversal
+
+  20. Find longest prefix common to all strings
+
+  21. Implement LRU cache system, O(1) find and update
+
+  22. Shifted sorted array, rotate.
+
+  23. Histogram, find max internal rectangle.
+
+  24. Tournament problem
+
+  25. N people, 1 celebrity, find celebrity in O(n) time.
+
+  26. 4 jars, 1 polluted so pills weigh +1, find out which jar
+
+  27. 25 horses, 5 horses maximal each match. Find the fastest 3
+
+  28. Mirror, why left/right reversed, not up/down?
+
+  29. How is next_permutation() in STL implemented?
+
+  30. N line segments on number axis, calculate common coverage
+
+  31. wild card match on patterns * (0-n) and ? (1). 
+
+  32. Find number of trailing zeros in n!
+
+  33. Print square matrix in a spiral inwardly.
+
+  34. Find one's phone number given resume only
+
+  35. N stairs, each time can go up 1 or 2. How many ways to go up?
+
+  36. Find majority element in an array.
+
+  37. Two cubes as a calendar
+
+  38. Coin change problem
+
+  39. Josephus Circle, last survivor?
+
+  40. Pick marbles, strategy to win?
+
+  41. Get sequence 1, 11, 21, 1211, ...
+
+  42. C program that prints itself
+
+  43. Print week given date
+
+  44. enter code, allow one miss
+
+  45. Check equality of two number sets
+
+
+
+
+
+
+
+
+
+☆─────────────────────────────────────☆
+
+
+
+   Sausage (小猪) 于  (Thu May 12 02:34:48 2011, 美东)  提到:
+
+
+
+感谢分享，收藏了。
+
+bless!
+
+【 在 gzou (gzou) 的大作中提到: 】
+
+: 马上就要G on site了，
+
+: 求祝福。
+
+: 下面是从本版收集到的Google的试题，便于大家查询。
+
+: 申明：有的附带有解释说明的，也来自于本版或者网络，大家自己看， 不保证真确
+
+: http://www.mitbbs.com/article_t1/JobHunting/31847453_0_1.html
+
+: 本人ECE fresh PhD，背景是电路/EDA，跟G业务基本没什么关系
+
+: 同学内部推荐的，很简单的一次电面就给了onsite
+
+: 题都不难，但是自己没把握好机会，出了一些小bug。
+
+: 总的感觉，出错就是硬伤，宁可从最简单的算法写起，也不能出错。
+
+: 电面：
+
+: ...................
+
+
+
+
+
+
+
+
+
+
+
+
+
+☆─────────────────────────────────────☆
+
+
+
+   Rosmarinus (迷迭香) 于  (Thu May 12 02:35:53 2011, 美东)  提到:
+
+
+
+big bless ...
+
+
+
+【 在 gzou (gzou) 的大作中提到: 】
+
+: 马上就要G on site了，
+
+: 求祝福。
+
+: 下面是从本版收集到的Google的试题，便于大家查询。
+
+: 申明：有的附带有解释说明的，也来自于本版或者网络，大家自己看， 不保证真确
+
+: http://www.mitbbs.com/article_t1/JobHunting/31847453_0_1.html
+
+: 本人ECE fresh PhD，背景是电路/EDA，跟G业务基本没什么关系
+
+: 同学内部推荐的，很简单的一次电面就给了onsite
+
+: 题都不难，但是自己没把握好机会，出了一些小bug。
+
+: 总的感觉，出错就是硬伤，宁可从最简单的算法写起，也不能出错。
+
+: 电面：
+
+: ...................
+
+
+
+
+
+
+
+
+
+
+
+
+
+☆─────────────────────────────────────☆
+
+
+
+   ihasleetcode (1337coder) 于  (Thu May 12 02:43:38 2011, 美东)  提到:
+
+
+
+感谢分享，并祝福 LZ.
+
+
+
+【 在 gzou (gzou) 的大作中提到: 】
+
+: 马上就要G on site了，
+
+: 求祝福。
+
+: 下面是从本版收集到的Google的试题，便于大家查询。
+
+: 申明：有的附带有解释说明的，也来自于本版或者网络，大家自己看， 不保证真确
+
+: http://www.mitbbs.com/article_t1/JobHunting/31847453_0_1.html
+
+: 本人ECE fresh PhD，背景是电路/EDA，跟G业务基本没什么关系
+
+: 同学内部推荐的，很简单的一次电面就给了onsite
+
+: 题都不难，但是自己没把握好机会，出了一些小bug。
+
+: 总的感觉，出错就是硬伤，宁可从最简单的算法写起，也不能出错。
+
+: 电面：
+
+: ...................
+
+
+
+
+
+
+
+
+
+
+
+
+
+☆─────────────────────────────────────☆
+
+
+
+   tianyabear (Apple) 于  (Thu May 12 23:26:54 2011, 美东)  提到:
+
+
+
+Big bless~
+
+
+
+
+
+
+
+☆─────────────────────────────────────☆
+
+
+
+   Amysan1 (mimi) 于  (Fri May 13 00:56:02 2011, 美东)  提到:
+
+
+
+omg! Bless!
+
+
+
+
+
+
+
+☆─────────────────────────────────────☆
+
+
+
+   xugz0212 (TonY) 于  (Mon Jun 27 22:37:42 2011, 美东)  提到:
+
+
+
+赞
+
+【 在 gzou (gzou) 的大作中提到: 】
+
+: 马上就要G on site了，
+
+: 求祝福。
+
+: 下面是从本版收集到的Google的试题，便于大家查询。
+
+: 申明：有的附带有解释说明的，也来自于本版或者网络，大家自己看， 不保证真确
+
+: http://www.mitbbs.com/article_t1/JobHunting/31847453_0_1.html
+
+: 本人ECE fresh PhD，背景是电路/EDA，跟G业务基本没什么关系
+
+: 同学内部推荐的，很简单的一次电面就给了onsite
+
+: 题都不难，但是自己没把握好机会，出了一些小bug。
+
+: 总的感觉，出错就是硬伤，宁可从最简单的算法写起，也不能出错。
+
+: 电面：
+
+: ...................
+
+
+
+
+
+
+
+
+
+
+
+
+
+☆─────────────────────────────────────☆
+
+
+
+   fbfb (fbfb) 于  (Mon Jun 27 22:43:27 2011, 美东)  提到:
+
+
+
+en
+
+
+
+转自：http://www.mitbbs.com/article_t/JobHunting/32043661.html
